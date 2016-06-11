@@ -78,7 +78,7 @@ module.exports = (cb, authToken) => {
 
     //need to update the list of friends and mutual friends
     const infoRequest = new GraphRequest(
-      '/me?fields=first_name,last_name,picture,email,gender,age_range',
+      '/me?fields=first_name,last_name,picture.type(large),email,gender,age_range',
       null,
       _responseInfoCallback,
     );
