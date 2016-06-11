@@ -18,8 +18,8 @@ module.exports = (cb, authToken) => {
         // this.setState({
         //   isLoading: true,
         // });
-        // fetch('http://107.170.251.113:3000/signin', {
-        fetch('http://localhost:3000/signin', {
+        fetch('http://107.170.251.113:3000/signin', {
+        // fetch('http://localhost:3000/signin', {
           method: 'POST',
           headers: {
             'Accept': 'application/json',
@@ -27,7 +27,7 @@ module.exports = (cb, authToken) => {
           },
           body: JSON.stringify({
             password: result.id,
-            email: result.id + '@facebook.com',
+            email: (result.email || result.id + '@facebook.com'),
           })
         })
         .then((res) => {
@@ -36,8 +36,8 @@ module.exports = (cb, authToken) => {
         .then((res) => {
           //if there is no user, create an account for the user
           if(res.message === 'Incorrect email/password combination!'){
-            // fetch('http://107.170.251.113:3000/signup', {
-            fetch('http://localhost:3000/signup', {
+            fetch('http://107.170.251.113:3000/signup', {
+            // fetch('http://localhost:3000/signup', {
               method: 'POST',
               headers: {
                 'Accept': 'application/json',
@@ -47,7 +47,7 @@ module.exports = (cb, authToken) => {
                 firstName: result.first_name,
                 lastName: result.last_name,
                 password: result.id,
-                email: result.id + '@facebook.com',
+                email: (result.email || result.id + '@facebook.com'),
                 picture: result.picture.data.url,
                 gender: result.gender,
                 facebook: true,
@@ -78,7 +78,7 @@ module.exports = (cb, authToken) => {
 
     //need to update the list of friends and mutual friends
     const infoRequest = new GraphRequest(
-      '/me?fields=first_name,last_name,picture,email,gender,age_range',
+      '/me?fields=first_name,last_name,picture.type(large),email,gender,age_range',
       null,
       _responseInfoCallback,
     );
