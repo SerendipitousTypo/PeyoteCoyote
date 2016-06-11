@@ -38,7 +38,7 @@ class Main extends Component {
   }
 
 
-  nav (path, email, token, id ) {
+  nav (path, title, email, token, id ) {
     this.props.navigator.push({
       name: path,
       title: title,
@@ -102,7 +102,7 @@ class Main extends Component {
         if(res.message === 'Incorrect email/password combination!'){
           this.setState({errorMessage: res.message, error: true, isLoading: false});
         } else{
-          this.nav('Time',this.state.email.toLowerCase());
+          this.nav('Time','Home',this.state.email.toLowerCase());
           this.setState({
             isLoading: false
           });
@@ -115,7 +115,7 @@ class Main extends Component {
   }
 
   handleSignUp() {
-    this.nav('SignUp', null, 'Sign Up');
+    this.nav('SignUp', 'Sign Up');
   }
 
   render() {
