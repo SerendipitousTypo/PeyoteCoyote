@@ -18,11 +18,20 @@ class Card extends Component{
     super(props);
     console.log(props.currentRoam);
     this.state = {
-      
+      // region: {
+      //   longitude: props.marker.longitude,
+      //   latitude: props.marker.latitude,
+      //   latitudeDelta: 0.001,
+      //   longitudeDelta: 0.001
+      // }  
     }
+
+
+
   }
 
   render() {
+    this.setState
     return (
       <View style={styles.card}>
             
@@ -35,7 +44,7 @@ class Card extends Component{
             </View>
             
             <View style={styles.cardMap}>
-              <Geolocation showUser={false} markers = {[this.props.marker]}/>
+              <Geolocation showUser={false} markers = {[this.props.marker]} region = {this.props.region} />
             </View>
 
             
@@ -101,6 +110,7 @@ class JoinPool extends Component {
       roams: roams,
       outOfCards: false
     }
+    console.log('passed in email in join', props.userEmail);
   }
 
   handleYup (card) {
@@ -154,6 +164,12 @@ const roams = [
               latitude: 40.7359,
               longitude: -73.9911,
           },
+          region: {
+              latitude: 40.7359,
+              longitude: -73.9911,
+              latitudeDelta: 0.01,
+              longitudeDelta: 0.01
+          },
           date: 'June 3, 2016 @ 8:00PM',
           price: '$18'
         },
@@ -163,9 +179,15 @@ const roams = [
           capacity: 15,
           description: 'EVERY WEEK PUB CRAWL SAN FRANCISCO BRINGS TOGETHER PEOPLE FROM AROUND THE WORLD TO EXPERIENCE THE ULTIMATE NIGHT OUT IN SF.',
           marker: {
-              title: 'Union Square',
-              latitude: 40.7359,
-              longitude: -73.9911,
+            title: 'Union Square',
+            latitude: 40.7359,
+            longitude: -73.9911
+          },
+          region: {
+            latitude: 40.7359,
+            longitude: -73.9911,
+            latitudeDelta: 0.01,
+            longitudeDelta: 0.01
           },
           date: 'June 3, 2016 @ 8:00PM',
           price: '$18'
@@ -180,6 +202,12 @@ const roams = [
               latitude: 40.7359,
               longitude: -73.9911,
           },
+          region: {
+            latitude: 40.7359,
+            longitude: -73.9911,
+            latitudeDelta: 0.01,
+            longitudeDelta: 0.01
+          },
           date: 'June 3, 2016 @ 8:00PM',
           price: '$18'
         },
@@ -193,6 +221,12 @@ const roams = [
             title: 'Tenderloin',
             latitude: 37.7847,
             longitude: -122.4145
+          },
+          region: {
+            latitude: 37.7847,
+            longitude: -122.4145,
+            latitudeDelta: 0.01,
+            longitudeDelta: 0.01
           },
           date: 'June 9, 2016 @ 9:00PM',
           price: '$0'

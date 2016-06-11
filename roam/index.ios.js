@@ -62,6 +62,7 @@ class TabbedApp extends Component {
 constructor(props) {
   super(props);
   this.state = {selectedTab:'roam'};
+  
 }
 
 renderScene (route, navigator) {
@@ -126,18 +127,18 @@ renderScene (route, navigator) {
         >
         <TabBarIOS.Item
           selected={this.state.selectedTab === 'roam'}
-          // icon={require('./imgs/roam.png')}
+          icon={require('./imgs/roam2.png')}
           title="Roam"
           onPress={() => {
-              this.setState({
-                  selectedTab: 'roam',
-              });
+            this.setState({
+                selectedTab: 'roam',
+            });
           }}>
           {this.navigateTo('Time', 'Home')}
         </TabBarIOS.Item>
         <TabBarIOS.Item
           selected={this.state.selectedTab === 'pool'}
-          // icon={require('./imgs/dollar.png')}
+          icon={require('./imgs/pool.png')}
           title="Roam Pool"
           onPress={() => {
                 this.setState({
@@ -148,7 +149,7 @@ renderScene (route, navigator) {
         </TabBarIOS.Item>
         <TabBarIOS.Item
           selected={this.state.selectedTab === 'xMain'}
-          // icon={require('./imgs/dollar.png')}
+          icon={require('./imgs/x.png')}
           title="Roam X"
           onPress={() => {
                 this.setState({

@@ -74,6 +74,7 @@ class Geolocation extends Component {
         showsUserLocation={this.state.showUserLocation}
         style={map.map}
         followUserLocation={true} 
+        region = { this.props.region }
         annotations = {this.props.markers} >
       </MapView>
     );
