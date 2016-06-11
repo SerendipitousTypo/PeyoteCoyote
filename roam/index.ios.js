@@ -48,7 +48,7 @@ class roam extends Component{
     return (
       <Navigator
         style={{flex: 1}}
-        initialRoute={{name: 'Main'}}
+        initialRoute={{name: 'Time'}}
         renderScene={ this.renderScene }
       />       
     );
@@ -104,7 +104,7 @@ renderScene (route, navigator) {
     return (
        <Navigator
       style={{flex: 1}}
-      initialRoute={{name: routeName}}
+      initialRoute={{name: 'Host', passProps: {userEmail: this.props.userEmail}}}
       renderScene={ this.renderScene }
       navigationBar={
       <Navigator.NavigationBar 
