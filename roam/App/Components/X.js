@@ -11,6 +11,40 @@ import {View,
 var defaultStyles = require('./Helpers/styles')
 import SwipeCards from './Helpers/Cards/SwipeCards';
 
+let roams = [];
+
+fetch('http://localhost:3000/roamList?email=testfsdf1@test.com&latitude=37.785834&longitude=-122.406417')
+.then( res => res = res.json() )
+.then( res => {
+  console.log('RES',res)
+  // res.forEach(function(roam) {
+  //   roam = roam.row[0];
+  //   const dummyAttending = Math.floor(Math.random() * roam.capacity);
+  //   roams.push({
+  //     title: roam.title, 
+  //     attending: dummyAttending, 
+  //     capacity: roam.capacity,
+  //     description: roam.description,
+  //     marker: {
+  //         title: 'Union Square',
+  //         latitude: roam.creatorLatitude,
+  //         longitude: roam.creatorLongitude,
+  //     },
+  //     region: {
+  //         latitude: roam.creatorLatitude,
+  //         longitude: roam.creatorLongitude,
+  //         latitudeDelta: 0.01,
+  //         longitudeDelta: 0.01
+  //     },
+  //     date: dateFormat.formatDateTime( new Date(roam.creatorRoamStart) ),
+  //     price: '$18'
+  //   });
+  // }); 
+  
+  console.log('ROAMS!!!!!!!!!!!!!!!!!!!!!!!!!:', JSON.stringify(roams));
+})
+.catch( err => console.log('ERRRORRRRR posting object', err));
+
 class Card extends Component{
   
   constructor(props) {
@@ -64,28 +98,28 @@ class NoMoreCards extends Component{
   }
 }
 
-const roams = [
-        {
-          name: 'Jessica', 
-          description: 'EVERY WEEK PUB CRAWL SAN FRANCISCO BRINGS TOGETHER PEOPLE FROM AROUND THE WORLD TO EXPERIENCE THE ULTIMATE NIGHT OUT IN SF.',
-          image: '../../imgs/alba.jpg'
-        },
-        {
-          name: 'Jessica', 
-          description: 'EVERY WEEK PUB CRAWL SAN FRANCISCO BRINGS TOGETHER PEOPLE FROM AROUND THE WORLD TO EXPERIENCE THE ULTIMATE NIGHT OUT IN SF.',
-          image: '../../imgs/alba.jpg'
-        },
-        {
-          name: 'Jessica', 
-          description: 'EVERY WEEK PUB CRAWL SAN FRANCISCO BRINGS TOGETHER PEOPLE FROM AROUND THE WORLD TO EXPERIENCE THE ULTIMATE NIGHT OUT IN SF.',
-          image: '../../imgs/alba.jpg'
-        },
-        {
-          name: 'Jessica', 
-          description: 'EVERY WEEK PUB CRAWL SAN FRANCISCO BRINGS TOGETHER PEOPLE FROM AROUND THE WORLD TO EXPERIENCE THE ULTIMATE NIGHT OUT IN SF.',
-          image: '../../imgs/alba.jpg'
-        }
-      ];
+// const roams = [
+//         {
+//           name: 'Jessica', 
+//           description: 'EVERY WEEK PUB CRAWL SAN FRANCISCO BRINGS TOGETHER PEOPLE FROM AROUND THE WORLD TO EXPERIENCE THE ULTIMATE NIGHT OUT IN SF.',
+//           image: '../../imgs/alba.jpg'
+//         },
+//         {
+//           name: 'Jessica', 
+//           description: 'EVERY WEEK PUB CRAWL SAN FRANCISCO BRINGS TOGETHER PEOPLE FROM AROUND THE WORLD TO EXPERIENCE THE ULTIMATE NIGHT OUT IN SF.',
+//           image: '../../imgs/alba.jpg'
+//         },
+//         {
+//           name: 'Jessica', 
+//           description: 'EVERY WEEK PUB CRAWL SAN FRANCISCO BRINGS TOGETHER PEOPLE FROM AROUND THE WORLD TO EXPERIENCE THE ULTIMATE NIGHT OUT IN SF.',
+//           image: '../../imgs/alba.jpg'
+//         },
+//         {
+//           name: 'Jessica', 
+//           description: 'EVERY WEEK PUB CRAWL SAN FRANCISCO BRINGS TOGETHER PEOPLE FROM AROUND THE WORLD TO EXPERIENCE THE ULTIMATE NIGHT OUT IN SF.',
+//           image: '../../imgs/alba.jpg'
+//         }
+//       ];
 
 class JoinPool extends Component {
 

@@ -11,6 +11,41 @@ import {View,
 var Geolocation = require('./Geolocation');
 var defaultStyles = require('./Helpers/styles')
 import SwipeCards from './Helpers/Cards/SwipeCards';
+import dateFormat from './Helpers/dateFormat'
+var requestString = ''
+let roams = [];
+
+fetch('http://localhost:3000/roamList?email=testfsdf1@test.com&latitude=37.785834&longitude=-122.406417')
+.then( res => res = res.json() )
+.then( res => {
+  console.log('RES',res)
+  res.forEach(function(roam) {
+    roam = roam.row[0];
+    const dummyAttending = Math.floor(Math.random() * roam.capacity);
+    roams.push({
+      title: roam.title, 
+      attending: dummyAttending, 
+      capacity: roam.capacity,
+      description: roam.description,
+      marker: {
+          title: 'Union Square',
+          latitude: roam.creatorLatitude,
+          longitude: roam.creatorLongitude,
+      },
+      region: {
+          latitude: roam.creatorLatitude,
+          longitude: roam.creatorLongitude,
+          latitudeDelta: 0.01,
+          longitudeDelta: 0.01
+      },
+      date: dateFormat.formatDateTime( new Date(roam.creatorRoamStart) ),
+      price: '$18'
+    });
+  }); 
+  
+  console.log('ROAMS!!!!!!!!!!!!!!!!!!!!!!!!!:', JSON.stringify(roams));
+})
+.catch( err => console.log('ERRRORRRRR posting object', err));
 
 class Card extends Component{
   
@@ -153,85 +188,85 @@ class JoinPool extends Component {
   }
 }
 
-const roams = [
-        {
-          title: 'Pub crawl', 
-          attending: 15, 
-          capacity: 30,
-          description: 'EVERY WEEK PUB CRAWL SAN FRANCISCO BRINGS TOGETHER PEOPLE FROM AROUND THE WORLD TO EXPERIENCE THE ULTIMATE NIGHT OUT IN SF.',
-          marker: {
-              title: 'Union Square',
-              latitude: 40.7359,
-              longitude: -73.9911,
-          },
-          region: {
-              latitude: 40.7359,
-              longitude: -73.9911,
-              latitudeDelta: 0.01,
-              longitudeDelta: 0.01
-          },
-          date: 'June 3, 2016 @ 8:00PM',
-          price: '$18'
-        },
-        {
-          title: 'Park walk', 
-          attending: 5, 
-          capacity: 15,
-          description: 'EVERY WEEK PUB CRAWL SAN FRANCISCO BRINGS TOGETHER PEOPLE FROM AROUND THE WORLD TO EXPERIENCE THE ULTIMATE NIGHT OUT IN SF.',
-          marker: {
-            title: 'Union Square',
-            latitude: 40.7359,
-            longitude: -73.9911
-          },
-          region: {
-            latitude: 40.7359,
-            longitude: -73.9911,
-            latitudeDelta: 0.01,
-            longitudeDelta: 0.01
-          },
-          date: 'June 3, 2016 @ 8:00PM',
-          price: '$18'
-        },
-        {
-          title: 'Bike ride', 
-          attending: 1, 
-          capacity: 99,
-          description: 'EVERY WEEK PUB CRAWL SAN FRANCISCO BRINGS TOGETHER PEOPLE FROM AROUND THE WORLD TO EXPERIENCE THE ULTIMATE NIGHT OUT IN SF.',
-          marker: {
-              title: 'Union Square',
-              latitude: 40.7359,
-              longitude: -73.9911,
-          },
-          region: {
-            latitude: 40.7359,
-            longitude: -73.9911,
-            latitudeDelta: 0.01,
-            longitudeDelta: 0.01
-          },
-          date: 'June 3, 2016 @ 8:00PM',
-          price: '$18'
-        },
+// const roams = [
+//         {
+//           title: 'Pub crawl', 
+//           attending: 15, 
+//           capacity: 30,
+//           description: 'EVERY WEEK PUB CRAWL SAN FRANCISCO BRINGS TOGETHER PEOPLE FROM AROUND THE WORLD TO EXPERIENCE THE ULTIMATE NIGHT OUT IN SF.',
+//           marker: {
+//               title: 'Union Square',
+//               latitude: 40.7359,
+//               longitude: -73.9911,
+//           },
+//           region: {
+//               latitude: 40.7359,
+//               longitude: -73.9911,
+//               latitudeDelta: 0.01,
+//               longitudeDelta: 0.01
+//           },
+//           date: 'June 3, 2016 @ 8:00PM',
+//           price: '$18'
+//         },
+//         {
+//           title: 'Park walk', 
+//           attending: 5, 
+//           capacity: 15,
+//           description: 'EVERY WEEK PUB CRAWL SAN FRANCISCO BRINGS TOGETHER PEOPLE FROM AROUND THE WORLD TO EXPERIENCE THE ULTIMATE NIGHT OUT IN SF.',
+//           marker: {
+//             title: 'Union Square',
+//             latitude: 40.7359,
+//             longitude: -73.9911
+//           },
+//           region: {
+//             latitude: 40.7359,
+//             longitude: -73.9911,
+//             latitudeDelta: 0.01,
+//             longitudeDelta: 0.01
+//           },
+//           date: 'June 3, 2016 @ 8:00PM',
+//           price: '$18'
+//         },
+//         {
+//           title: 'Bike ride', 
+//           attending: 1, 
+//           capacity: 99,
+//           description: 'EVERY WEEK PUB CRAWL SAN FRANCISCO BRINGS TOGETHER PEOPLE FROM AROUND THE WORLD TO EXPERIENCE THE ULTIMATE NIGHT OUT IN SF.',
+//           marker: {
+//               title: 'Union Square',
+//               latitude: 40.7359,
+//               longitude: -73.9911,
+//           },
+//           region: {
+//             latitude: 40.7359,
+//             longitude: -73.9911,
+//             latitudeDelta: 0.01,
+//             longitudeDelta: 0.01
+//           },
+//           date: 'June 3, 2016 @ 8:00PM',
+//           price: '$18'
+//         },
         
-        {
-          title: 'Wild getaway', 
-          attending: 56, 
-          capacity: 99,
-          description: 'EVERY WEEK PEOPLE IN SAN FRANCISCO BRINGS TOGETHER PEOPLE FROM AROUND THE WORLD TO EXPERIENCE THE ULTIMATE NIGHT.',
-          marker: {
-            title: 'Tenderloin',
-            latitude: 37.7847,
-            longitude: -122.4145
-          },
-          region: {
-            latitude: 37.7847,
-            longitude: -122.4145,
-            latitudeDelta: 0.01,
-            longitudeDelta: 0.01
-          },
-          date: 'June 9, 2016 @ 9:00PM',
-          price: '$0'
-        }
-      ];
+//         {
+//           title: 'Wild getaway', 
+//           attending: 56, 
+//           capacity: 99,
+//           description: 'EVERY WEEK PEOPLE IN SAN FRANCISCO BRINGS TOGETHER PEOPLE FROM AROUND THE WORLD TO EXPERIENCE THE ULTIMATE NIGHT.',
+//           marker: {
+//             title: 'Tenderloin',
+//             latitude: 37.7847,
+//             longitude: -122.4145
+//           },
+//           region: {
+//             latitude: 37.7847,
+//             longitude: -122.4145,
+//             latitudeDelta: 0.01,
+//             longitudeDelta: 0.01
+//           },
+//           date: 'June 9, 2016 @ 9:00PM',
+//           price: '$0'
+//         }
+//       ];
 
 const styles = StyleSheet.create({
   
