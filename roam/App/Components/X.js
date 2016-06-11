@@ -41,7 +41,7 @@ fetch('http://localhost:3000/roamList?email=testfsdf1@test.com&latitude=37.78583
   //   });
   // }); 
   
-  console.log('ROAMS!!!!!!!!!!!!!!!!!!!!!!!!!:', JSON.stringify(roams));
+  // console.log('ROAMS!!!!!!!!!!!!!!!!!!!!!!!!!:', JSON.stringify(roams));
 })
 .catch( err => console.log('ERRRORRRRR posting object', err));
 
@@ -124,6 +124,9 @@ class NoMoreCards extends Component{
 class JoinPool extends Component {
 
   constructor(props) {
+    console.log('token!!!!!!!', props.token);
+    console.log('id!!!!!!!', props.id);
+    console.log('email!!!!!!!', props.userEmail);
     super(props);
     this.state = {
       roams: roams,

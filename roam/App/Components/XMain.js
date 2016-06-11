@@ -11,6 +11,9 @@ import {
 class XMain extends Component {
   constructor(props) {
     super(props);
+    console.log('token!!!!!!!', props.token);
+    console.log('id!!!!!!!', props.id);
+    console.log('email!!!!!!!', props.userEmail);
   }
   render() {
     return (
@@ -21,7 +24,7 @@ class XMain extends Component {
           </View>
           <TouchableHighlight
             style={defaultStyles.button}
-            onPress = { () => (this.props.navigator.push({name: 'X'})) } 
+            onPress = { () => (this.props.navigator.push({name: 'X', passProps: {userEmail: this.props.userEmail, id: this.props.id, token: this.props.token} })) } 
             underlayColor="white">
               <Text style={defaultStyles.buttonText}> Start </Text>
           </TouchableHighlight>

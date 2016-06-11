@@ -37,18 +37,15 @@ class Main extends Component {
     };
   }
 
-  nav (path, email, title) {
-    if(path === 'Time') {
-      console.log('alskdjfalksdjf')
 
-      console.log(this.props.navigator.getCurrentRoutes())
-    }
-
+  nav (path, email, token, id ) {
     this.props.navigator.push({
       name: path,
       title: title,
       passProps: {
-        userEmail: email
+        userEmail: email,
+        token: token,
+        id: id
       }
     })
   }
@@ -159,11 +156,12 @@ class Main extends Component {
               if (error) {
                 console.log("Login failed with error: " + result.error);
               } else {
+                var context = this;
                 AccessToken.getCurrentAccessToken().then( data => {
                   authToken = data.accessToken.toString();
                   this.setState({token: data.accessToken.toString()});
+                  handleFacebook(context.nav.bind(context), authToken);
                 });
-                handleFacebook(this.nav.bind(this), authToken);
               }
             }
           }

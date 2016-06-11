@@ -73,7 +73,6 @@ renderScene (route, navigator) {
     if(route.name === 'Pending') {
       return <Pending navigator={navigator} {...route.passProps}/>
     }
-    
     if(route.name === 'Dte') {
       return <Dte navigator={navigator} {...route.passProps}/>
     }
@@ -107,7 +106,7 @@ renderScene (route, navigator) {
     return (
        <Navigator
       style={{flex: 1}}
-      initialRoute={{name: routeName, title:title, passProps: {userEmail: this.props.userEmail}}}
+      initialRoute={{name: routeName, passProps: {userEmail: this.props.userEmail, token: this.props.token, id: this.props.id}}}
       renderScene={ this.renderScene }
       navigationBar={
       <Navigator.NavigationBar 
