@@ -60,11 +60,11 @@ module.exports = (cb, authToken) => {
             .then((res) => {
               console.log('RESPONSE FROM SERVER ON SIGNUP PAGE', res);
               if (res.message === 'User created') {
-                cb('Time',(result.id + '@facebook.com').toLowerCase(),authToken, result.id);
+                cb('Time','Home',(result.id + '@facebook.com').toLowerCase(),authToken, result.id);
               }
             })
           } else{
-            cb('Time',(result.id + '@facebook.com').toLowerCase(),authToken, result.id);
+            cb('Time','Home',(result.id + '@facebook.com').toLowerCase(),authToken, result.id);
             // this.setState({
             //   isLoading: false
             // });
